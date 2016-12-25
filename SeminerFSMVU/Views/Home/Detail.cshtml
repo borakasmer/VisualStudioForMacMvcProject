@@ -1,0 +1,47 @@
+﻿@model List<Lesson>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+	<script src='/Scripts/jquery-3.1.1.min.js'></script>
+	<script src='/Scripts/bootstrap.min.js'></script>
+	<link href='/Content/bootstrap.min.css' rel='stylesheet'/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+		@{
+			string[] cssList=new string[]{"success","danger","info"};
+			System.Random rnd=new System.Random();
+		}
+		<div class="container">
+			<div class="jumbotron">
+				<a href="/"><h1>Öğrenci Ders Listesi</h1></a>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>						
+						<th>Adı</th>
+						<th>No</th>
+						<th>Öğrenci No</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var lesson in @Model) {
+						int index=rnd.Next(30)%3;
+						var css=cssList[index];
+						<tr class=@css>							
+							<td>@lesson.Name</td>
+							<td>@lesson.ID</td>
+							<td>@lesson.StudentID</td>
+						</tr>
+					}							
+				</tbody>
+			</table>
+		</div>
+</body>
+</html>
+

@@ -1,0 +1,49 @@
+﻿@model List<Student>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+	<script src='/Scripts/jquery-3.1.1.min.js'></script> 	<script src='/Scripts/bootstrap.min.js'></script> 	<link href='/Content/bootstrap.min.css' rel='stylesheet'/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+		@{
+			string[] cssList=new string[]{"success","danger","info"};
+			System.Random rnd=new System.Random();
+		}
+		<div class="container">
+			<div class="jumbotron">
+				<h1>Öğrenci Listesi</h1>
+			</div>
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Adı</th>
+						<th>Soyadı</th>
+						<th>No</th>
+						<th>Doğum tarihi</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var student in @Model) {
+						int index=rnd.Next(30)%3;
+						var css=cssList[index];
+						<tr class=@css>
+							<td><a href="/FSMVUDetay/@student.ID"><input type="button" value="Seçiniz"></a></td>
+							<td>@student.Name</td>
+							<td>@student.SurName</td>
+							<td>@student.ID</td>
+							<td>@student.BirthDate</td>
+						</tr>
+					}							
+				</tbody>
+			</table>
+		</div>
+</body>
+</html>
+
